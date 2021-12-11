@@ -1,20 +1,19 @@
-
-/******************************************
+/*******************************************
 Treehouse FSJS Techdegree:
 Project 2 - Data Pagination and Filtering
 Student: Ryan Agatep
-******************************************/
+*******************************************/
 
 //console.log(data);
 
 // Number of students shown per page
 const itemsPerPage = 9;
 
-
-/****************************************************************************
+/*******************************************
 The showPage Function
-This function will create and insert HTML elements for a set of nine students per page.
-****************************************************************************/
+This function will create and insert HTML 
+elements for a set of nine students per page.
+********************************************/
 
 function showPage(list, page) {
 
@@ -22,21 +21,19 @@ function showPage(list, page) {
   console.log(page);
   console.log(list.length);
 
-  // Create the index start and end range for the loop based on the number of students per page.
+  // Create the index start and end for the loop.
   const startIndex = (page * itemsPerPage) - itemsPerPage;
   const endIndex = (page * itemsPerPage);
 
   console.log(startIndex);
   console.log(endIndex);
   
-  // Select the UL element student-list class and make sure that its innerHTML property is empty.
+  // Select the UL element student-list class and clear its innerHTML property.
   const studentList = document.querySelector('.student-list');
   studentList.innerHTML = '';
 
   // Build the student cards' HTML elements by iterating though the length of the student's list.
-
   let studentItem = '';
-
   for (let i = 0; i < list.length; i++){
     if(i >= startIndex && i < endIndex ){
       studentItem += `
@@ -55,10 +52,11 @@ function showPage(list, page) {
   studentList.insertAdjacentHTML('beforeend', studentItem);
  }
 
-/************************************************************************** 
+/********************************************
 The addPagination function
-This function will create and insert the HTML elements needed for the page buttons
-**************************************************************************/
+This function will create and insert the HTML 
+elements needed for the page buttons
+*********************************************/
 
 function addPagination(list) {
 
@@ -66,7 +64,7 @@ function addPagination(list) {
   const numOfPages = Math.ceil(list.length / itemsPerPage)
   console.log(numOfPages);
 
-  // Select the UL element link-list class and make sure that its innerHTML property is empty.
+  // Select the UL element link-list class and clear its innerHTML property.
   const linkList = document.querySelector('.link-list');
   linkList.innerHTML = '';
 
