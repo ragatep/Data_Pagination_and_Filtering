@@ -66,33 +66,34 @@ function addPagination(list) {
   for (i = 1; i <= numOfPages; i++) {
     let button = `
     <li>
-       <button type="button" id="pages">${i}</button>
+       <button type="button">${i}</button>
     </li>`;
     linkList.insertAdjacentHTML('beforeend', button);
   }
 
-  /* Variable to store NodeList of DOM buttons*/
+  // Variable to store NodeList of DOM buttons
   const buttons = document.querySelectorAll('button');
 
-  // Get the first linkList button HTML element and set it to active.
+  // The active class is added to the first pagination button
+  // when the application loads.
   buttons[0].classList.add("active");
 
-  // An event listener to linkList that sets a button to active 
+  // An event listener on linkList that sets a button to active 
   // when clicked and displays the number of students for that page.
   // No other elements should register on the click event.
   linkList.addEventListener('click', (e) => {
     // TODO: refactor and maybe create a function named setAction(e). 
     // Project Warm up - Where's the Action
-    for (let i = 0; i < buttons.length; i++){
-      buttons[i].classList.remove('active');
-    }
     if (e.target.tagName === 'BUTTON') {
+      for (let i = 0; i < buttons.length; i++){
+        buttons[i].classList.remove('active');
+      }
       const buttonTarget = e.target;
       buttonTarget.classList.add('active');
       showPage(list, buttonTarget.textContent);
 
-      console.log(buttonTarget.textContent);
-      console.log(buttonTarget);
+      //console.log(buttonTarget.textContent);
+      //console.log(buttonTarget);
     }   
   });
 }
