@@ -4,8 +4,6 @@ Project 2 - Data Pagination and Filtering
 Student: Ryan Agatep
 *******************************************/
 
-//console.log(data);
-
 // Number of students shown per page
 const itemsPerPage = 9;
 
@@ -17,22 +15,16 @@ elements for a set of nine students per page.
 
 function showPage(list, page) {
 
-  console.log(list);
-  console.log(page);
-  console.log(list.length);
-
   // Create the index start and end for the loop.
   const startIndex = (page * itemsPerPage) - itemsPerPage;
   const endIndex = (page * itemsPerPage);
-
-  console.log(startIndex);
-  console.log(endIndex);
   
   // Select the UL element student-list class and clear its innerHTML property.
   const studentList = document.querySelector('.student-list');
   studentList.innerHTML = '';
 
-  // Build the student cards' HTML elements by iterating though the length of the student's list.
+  // Build the student cards' HTML elements by iterating though 
+  //the length of the student's list.
   let studentItem = '';
   for (let i = 0; i < list.length; i++){
     if(i >= startIndex && i < endIndex ){
@@ -60,15 +52,17 @@ elements needed for the page buttons
 
 function addPagination(list) {
 
-  // Use some basic math that rounds a number up to the next largest integer to create a variable to calculate the number of pages needed.
+  // Use some basic math that rounds a number up to the next 
+  //largest integer to create a variable to calculate the number 
+  //of pages needed.
   const numOfPages = Math.ceil(list.length / itemsPerPage)
-  console.log(numOfPages);
 
   // Select the UL element link-list class and clear its innerHTML property.
   const linkList = document.querySelector('.link-list');
   linkList.innerHTML = '';
 
-  // Build the page buttons element by interating through the numOfPages starting at 1.
+  // Build the page buttons element by interating through 
+  //the numOfPages starting at 1.
   for (i = 1; i <= numOfPages; i++) {
     let button = `
     <li>
@@ -77,20 +71,26 @@ function addPagination(list) {
     linkList.insertAdjacentHTML('beforeend', button);
   }
 
-  // Get the first linkList button HTML element and set it to active.
-  const firstButton = document.querySelector('.link-list button');
-  firstButton.classList.add('active');
+  /* Variable to store NodeList of DOM buttons*/
+  const buttons = document.querySelectorAll('button');
 
-  // An event listener to linkList that sets a button to active when clicked and displays the number of students for that page.
+  // Get the first linkList button HTML element and set it to active.
+  buttons[0].classList.add("active");
+
+  // An event listener to linkList that sets a button to active 
+  //when clicked and displays the number of students for that page.
   linkList.addEventListener('click', (e) => {
-    console.log(e.target);
-    const buttonTarget = e.target;
+    // TODO: refactor and maybe create a function named setAction(e). Project Warm up - Where's the Action
+    for (let i = 0; i < buttons.length; i++){
+      buttons[i].classList.remove('active');
+    }
+    let buttonTarget = e.target;
     if (buttonTarget.tagName === "BUTTON") {
-      const previousButton = document.querySelector('.active');
-      previousButton.classList = '';
       buttonTarget.classList.add('active');
       showPage(list, buttonTarget.textContent);
-    }
+    }   
+    console.log(buttonTarget.textContent);
+    console.log(buttonTarget);
   });
 }
 
