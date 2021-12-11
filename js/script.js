@@ -24,7 +24,7 @@ function showPage(list, page) {
   studentList.innerHTML = '';
 
   // Build the student cards' HTML elements by iterating though 
-  //the length of the student's list.
+  // the length of the student's list.
   let studentItem = '';
   for (let i = 0; i < list.length; i++){
     if(i >= startIndex && i < endIndex ){
@@ -53,8 +53,8 @@ elements needed for the page buttons
 function addPagination(list) {
 
   // Use some basic math that rounds a number up to the next 
-  //largest integer to create a variable to calculate the number 
-  //of pages needed.
+  // largest integer to create a variable to calculate the number 
+  // of pages needed.
   const numOfPages = Math.ceil(list.length / itemsPerPage)
 
   // Select the UL element link-list class and clear its innerHTML property.
@@ -62,7 +62,7 @@ function addPagination(list) {
   linkList.innerHTML = '';
 
   // Build the page buttons element by interating through 
-  //the numOfPages starting at 1.
+  // the numOfPages starting at 1.
   for (i = 1; i <= numOfPages; i++) {
     let button = `
     <li>
@@ -78,19 +78,22 @@ function addPagination(list) {
   buttons[0].classList.add("active");
 
   // An event listener to linkList that sets a button to active 
-  //when clicked and displays the number of students for that page.
+  // when clicked and displays the number of students for that page.
+  // No other elements should register on the click event.
   linkList.addEventListener('click', (e) => {
-    // TODO: refactor and maybe create a function named setAction(e). Project Warm up - Where's the Action
+    // TODO: refactor and maybe create a function named setAction(e). 
+    // Project Warm up - Where's the Action
     for (let i = 0; i < buttons.length; i++){
       buttons[i].classList.remove('active');
     }
-    let buttonTarget = e.target;
-    if (buttonTarget.tagName === "BUTTON") {
+    if (e.target.tagName === 'BUTTON') {
+      const buttonTarget = e.target;
       buttonTarget.classList.add('active');
       showPage(list, buttonTarget.textContent);
+
+      console.log(buttonTarget.textContent);
+      console.log(buttonTarget);
     }   
-    console.log(buttonTarget.textContent);
-    console.log(buttonTarget);
   });
 }
 
