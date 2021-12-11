@@ -5,7 +5,7 @@ Project 2 - Data Pagination and Filtering
 Student: Ryan Agatep
 ******************************************/
 
-console.log(data);
+//console.log(data);
 
 // Number of students shown per page
 const itemsPerPage = 9;
